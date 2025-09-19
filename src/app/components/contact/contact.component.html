@@ -1,0 +1,203 @@
+<section class="contact" [class.visible]="isVisible()">
+  <div class="contact-container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="section-subtitle">
+        Ready to transform your ideas into reality? Let's discuss your project and explore how we can help you succeed.
+      </p>
+    </div>
+
+    <div class="contact-content">
+      <!-- Contact Information -->
+      <div class="contact-info-section">
+        <h3 class="info-title">Contact Information</h3>
+
+        <!-- Email -->
+        <div class="contact-item">
+          <div class="contact-icon">
+            <mat-icon>email</mat-icon>
+          </div>
+          <div class="contact-details">
+            <h4 class="contact-label">Email</h4>
+            <a
+              [href]="'mailto:' + contactInfo.email"
+              class="contact-value"
+              (click)="copyToClipboard(contactInfo.email)"
+            >
+              {{ contactInfo.email }}
+            </a>
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="contact-item">
+          <div class="contact-icon">
+            <mat-icon>phone</mat-icon>
+          </div>
+          <div class="contact-details">
+            <h4 class="contact-label">Phone</h4>
+            <a
+              [href]="'tel:' + contactInfo.phone"
+              class="contact-value"
+              (click)="copyToClipboard(contactInfo.phone)"
+            >
+              {{ contactInfo.phone }}
+            </a>
+          </div>
+        </div>
+
+        <!-- Address -->
+        <div class="contact-item">
+          <div class="contact-icon">
+            <mat-icon>location_on</mat-icon>
+          </div>
+          <div class="contact-details">
+            <h4 class="contact-label">Office</h4>
+            <div class="contact-value address" (click)="openMaps()">
+              <div>{{ contactInfo.address.line1 }}</div>
+              <div>{{ contactInfo.address.line2 }}</div>
+              <div>{{ contactInfo.address.line3 }}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Business Hours -->
+        <div class="business-hours">
+          <h4 class="hours-title">Business Hours</h4>
+          <div class="hours-list">
+            <div class="hours-item">
+              <span>Monday - Friday</span>
+              <span>9:00 AM - 6:00 PM</span>
+            </div>
+            <div class="hours-item">
+              <span>Saturday</span>
+              <span>10:00 AM - 4:00 PM</span>
+            </div>
+            <div class="hours-item">
+              <span>Sunday</span>
+              <span>Closed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form-section">
+        <h3 class="form-title">Send us a Message</h3>
+
+        <!-- Success Message -->
+        <div class="success-message" *ngIf="submitSuccess()">
+          <mat-icon>check_circle</mat-icon>
+          <div class="success-content">
+            <h4>Message Sent Successfully!</h4>
+            <p>Thank you for contacting us. We'll get back to you within 24 hours.</p>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form" *ngIf="!submitSuccess()">
+          <!-- Name & Email Row -->
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Full Name *</mat-label>
+              <input matInput formControlName="name" placeholder="Your full name">
+              <mat-error *ngIf="getFieldError('name')">{{ getFieldError('name') }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Email Address *</mat-label>
+              <input matInput type="email" formControlName="email" placeholder="your@email.com">
+              <mat-error *ngIf="getFieldError('email')">{{ getFieldError('email') }}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- Company & Service Row -->
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Company</mat-label>
+              <input matInput formControlName="company" placeholder="Your company name">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Service of Interest *</mat-label>
+              <mat-select formControlName="service">
+                <mat-option *ngFor="let service of services" [value]="service.value">
+                  {{ service.label }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="getFieldError('service')">{{ getFieldError('service') }}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- Budget -->
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="form-field full-width">
+              <mat-label>Project Budget (Optional)</mat-label>
+              <mat-select formControlName="budget">
+                <mat-option value="under-10k">Under $10,000</mat-option>
+                <mat-option value="10k-25k">$10,000 - $25,000</mat-option>
+                <mat-option value="25k-50k">$25,000 - $50,000</mat-option>
+                <mat-option value="50k-100k">$50,000 - $100,000</mat-option>
+                <mat-option value="over-100k">Over $100,000</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!-- Message -->
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="form-field full-width">
+              <mat-label>Project Details *</mat-label>
+              <textarea
+                matInput
+                formControlName="message"
+                rows="4"
+                placeholder="Tell us about your project, goals, and requirements..."
+              ></textarea>
+              <mat-error *ngIf="getFieldError('message')">{{ getFieldError('message') }}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="form-actions">
+            <button
+              type="submit"
+              class="submit-btn"
+              [disabled]="isSubmitting()"
+              [class.loading]="isSubmitting()"
+            >
+              <span *ngIf="!isSubmitting()">Send Message</span>
+              <span *ngIf="isSubmitting()">
+                <mat-icon class="loading-spinner">hourglass_empty</mat-icon>
+                Sending...
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Additional Info -->
+    <div class="additional-info">
+      <div class="info-cards">
+        <div class="info-card">
+          <mat-icon>schedule</mat-icon>
+          <h4>Quick Response</h4>
+          <p>We typically respond to all inquiries within 24 hours during business days.</p>
+        </div>
+
+        <div class="info-card">
+          <mat-icon>security</mat-icon>
+          <h4>Confidential</h4>
+          <p>All project discussions are kept strictly confidential under our NDA policy.</p>
+        </div>
+
+        <div class="info-card">
+          <mat-icon>support</mat-icon>
+          <h4>Free Consultation</h4>
+          <p>Initial project consultation and estimate are completely free with no obligations.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

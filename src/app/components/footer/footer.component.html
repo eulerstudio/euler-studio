@@ -1,0 +1,119 @@
+<footer class="footer">
+  <div class="footer-container">
+    <!-- Footer Content -->
+    <div class="footer-content">
+      <!-- Company Info -->
+      <div class="footer-section company-info">
+        <div class="company-brand">
+          <h3 class="brand-name">Euler Studio</h3>
+          <p class="brand-tagline">
+            Transforming ideas into digital excellence through innovation, creativity, and technical expertise.
+          </p>
+        </div>
+
+        <div class="contact-summary">
+          <div class="contact-item">
+            <mat-icon>email</mat-icon>
+            <span>{{ contactInfo.email }}</span>
+          </div>
+          <div class="contact-item">
+            <mat-icon>phone</mat-icon>
+            <span>{{ contactInfo.phone }}</span>
+          </div>
+          <div class="contact-item">
+            <mat-icon>location_on</mat-icon>
+            <span>Jakarta, Indonesia</span>
+          </div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="social-links">
+          <a
+            *ngFor="let social of socialLinks"
+            [href]="social.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link"
+            [attr.aria-label]="social.platform"
+          >
+            <mat-icon>{{ social.icon }}</mat-icon>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-section">
+        <h4 class="section-title">Quick Links</h4>
+        <ul class="footer-links">
+          <li *ngFor="let link of quickLinks">
+            <a
+              [href]="link.anchor"
+              (click)="scrollToSection(link.anchor); $event.preventDefault()"
+              class="footer-link"
+            >
+              {{ link.label }}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div class="footer-section">
+        <h4 class="section-title">Services</h4>
+        <ul class="footer-links">
+          <li *ngFor="let service of services">
+            <span class="service-item">{{ service }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Business Info -->
+      <div class="footer-section">
+        <h4 class="section-title">Business Hours</h4>
+        <div class="business-info">
+          <div class="hours-item">
+            <span class="day">Monday - Friday</span>
+            <span class="time">9:00 AM - 6:00 PM</span>
+          </div>
+          <div class="hours-item">
+            <span class="day">Saturday</span>
+            <span class="time">10:00 AM - 4:00 PM</span>
+          </div>
+          <div class="hours-item">
+            <span class="day">Sunday</span>
+            <span class="time">Closed</span>
+          </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="footer-cta">
+          <a href="#contact" (click)="scrollToSection('#contact'); $event.preventDefault()" class="cta-button">
+            Start Your Project
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <div class="footer-bottom-content">
+        <div class="copyright">
+          <p>&copy; {{ currentYear }} Euler Studio. All rights reserved.</p>
+        </div>
+
+        <div class="legal-links">
+          <a href="/privacy" class="legal-link">Privacy Policy</a>
+          <a href="/terms" class="legal-link">Terms of Service</a>
+        </div>
+
+        <!-- Back to Top -->
+        <button class="back-to-top" (click)="scrollToTop()" aria-label="Back to top">
+          <mat-icon>keyboard_arrow_up</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background Pattern -->
+  <div class="footer-background"></div>
+</footer>

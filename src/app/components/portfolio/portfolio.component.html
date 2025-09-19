@@ -1,0 +1,104 @@
+<section class="portfolio" [class.visible]="isVisible()">
+  <div class="portfolio-container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <h2 class="section-title">Our Portfolio</h2>
+      <p class="section-subtitle">
+        Showcasing our commitment to excellence through innovative digital solutions
+        that drive real business results.
+      </p>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="filter-section">
+      <div class="filter-tabs">
+        <button
+          *ngFor="let category of categories"
+          class="filter-tab"
+          [class.active]="selectedCategory() === category.id"
+          (click)="selectCategory(category.id)"
+        >
+          {{ category.label }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-section">
+      <div class="projects-grid">
+        <div
+          *ngFor="let project of filteredProjects(); let i = index"
+          class="project-card"
+          [style.animation-delay.ms]="i * 150"
+        >
+          <!-- Project Image Placeholder -->
+          <div class="project-image">
+            <div class="image-placeholder">
+              <span class="project-initial">{{ project.name.charAt(0) }}</span>
+            </div>
+            <div class="project-overlay">
+              <div class="overlay-content">
+                <h4 class="overlay-title">{{ project.name }}</h4>
+                <p class="overlay-category">{{ project.category }}</p>
+                <div class="overlay-actions">
+                  <button class="action-btn primary">View Details</button>
+                  <button class="action-btn secondary">Live Demo</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Info -->
+          <div class="project-info">
+            <div class="project-header">
+              <h3 class="project-title">{{ project.name }}</h3>
+              <span class="project-year">{{ project.year }}</span>
+            </div>
+
+            <p class="project-description">
+              {{ getProjectDescription(project) }}
+            </p>
+
+            <div class="project-technologies">
+              <span
+                *ngFor="let tech of project.technologies"
+                class="tech-tag"
+              >
+                {{ tech }}
+              </span>
+            </div>
+
+            <div class="project-meta">
+              <span class="project-category">{{ project.category }}</span>
+              <div class="project-status" *ngIf="project.featured">
+                <span class="status-badge">Featured</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state" *ngIf="filteredProjects().length === 0">
+        <div class="empty-content">
+          <div class="empty-icon">📂</div>
+          <h3 class="empty-title">No Projects Found</h3>
+          <p class="empty-description">
+            No projects match the selected category. Try selecting a different filter.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="portfolio-cta">
+      <div class="cta-content">
+        <h3 class="cta-title">Ready to Start Your Project?</h3>
+        <p class="cta-description">
+          Let's discuss how we can bring your vision to life with our expertise and creativity.
+        </p>
+        <a href="#contact" class="cta-button">Get In Touch</a>
+      </div>
+    </div>
+  </div>
+</section>

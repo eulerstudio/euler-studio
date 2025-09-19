@@ -1,0 +1,78 @@
+<section class="about" [class.visible]="isVisible()">
+  <div class="about-container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <h2 class="section-title">About Euler Studio</h2>
+      <p class="section-subtitle">
+        Transforming ideas into digital realities through innovation, creativity, and technical excellence.
+      </p>
+    </div>
+
+    <!-- About Content -->
+    <div class="about-content">
+      <!-- Company Story -->
+      <div class="company-story">
+        <div class="story-text">
+          <h3 class="story-title">Our Story</h3>
+          <p class="story-description">
+            Founded with a vision to bridge the gap between innovative ideas and digital implementation,
+            Euler Studio has emerged as a trusted partner for businesses seeking to establish a strong
+            digital presence. Our team combines creative design thinking with robust technical expertise
+            to deliver solutions that not only meet but exceed expectations.
+          </p>
+
+          <p class="story-description">
+            Based in Jakarta, we serve clients across Indonesia and internationally, helping them
+            navigate the digital landscape with confidence and achieve sustainable growth through
+            technology-driven solutions.
+          </p>
+        </div>
+
+        <div class="story-visual">
+          <div class="visual-element"></div>
+        </div>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="services-section">
+        <h3 class="services-title">What We Do</h3>
+        <div class="services-grid">
+          <div
+            class="service-card"
+            *ngFor="let service of services; let i = index"
+            [style.animation-delay.ms]="i * 150"
+          >
+            <div class="service-icon">{{ service.icon }}</div>
+            <h4 class="service-title">{{ service.title }}</h4>
+            <p class="service-description">{{ service.description }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Section -->
+      <div class="stats-section">
+        <div class="stats-grid">
+          <div
+            class="stat-item"
+            *ngFor="let stat of stats; let i = index"
+            [style.animation-delay.ms]="i * 100"
+          >
+            <div class="stat-number">{{ stat.number }}</div>
+            <div class="stat-label">{{ stat.label }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mission Statement -->
+      <div class="mission-section">
+        <div class="mission-content">
+          <h3 class="mission-title">Our Mission</h3>
+          <p class="mission-text">
+            To empower businesses with cutting-edge digital solutions that drive growth,
+            enhance user experiences, and create lasting value in an ever-evolving digital world.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

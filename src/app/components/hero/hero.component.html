@@ -1,0 +1,54 @@
+<section class="hero" [class.visible]="isVisible()">
+  <div class="hero-container">
+    <div class="hero-content">
+      <!-- Main Heading -->
+      <div class="hero-text">
+        <h1 class="hero-title">
+          <span class="title-line-1">Crafting</span>
+          <span class="title-line-2 typing-container">
+            <span class="typing-text">{{ typingWords[currentWordIndex()] }}</span>
+            <span class="cursor">|</span>
+          </span>
+          <span class="title-line-3">that Transform Ideas</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          We are Euler Studio, a forward-thinking digital agency specializing in
+          creating exceptional web experiences that drive business growth and innovation.
+        </p>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="hero-actions">
+        <button
+          class="cta-primary"
+          (click)="scrollToAbout()"
+        >
+          Discover Our Work
+        </button>
+
+        <a
+          href="#contact"
+          class="cta-secondary"
+          (click)="$event.preventDefault(); scrollToAbout()"
+        >
+          Get In Touch
+        </a>
+      </div>
+    </div>
+
+    <!-- Hero Visual -->
+    <div class="hero-visual">
+      <div class="visual-grid">
+        <div class="grid-item" *ngFor="let item of [1,2,3,4,5,6]; let i = index"
+             [style.animation-delay.s]="i * 0.1"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator">
+    <div class="scroll-arrow"></div>
+    <span class="scroll-text">Scroll</span>
+  </div>
+</section>

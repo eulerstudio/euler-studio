@@ -1,0 +1,65 @@
+<header class="header">
+  <div class="header-container">
+    <!-- Logo -->
+    <div class="logo">
+      <a href="#hero" (click)="scrollToSection('#hero')">
+        <span class="logo-text">Euler Studio</span>
+      </a>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="nav-desktop">
+      <ul class="nav-list">
+        <li *ngFor="let item of navigationItems" class="nav-item">
+          <a
+            [href]="item.anchor"
+            (click)="scrollToSection(item.anchor); $event.preventDefault()"
+            class="nav-link"
+          >
+            {{ translate(item.i18nKey) }}
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Language Switcher & Mobile Menu Button -->
+    <div class="header-actions">
+      <!-- Language Switcher -->
+      <div class="lang-switcher">
+        <button
+          *ngFor="let lang of languages"
+          class="lang-btn"
+          [class.active]="getCurrentLang() === lang.code"
+          (click)="switchLanguage(lang.code)"
+        >
+          {{ lang.label }}
+        </button>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button
+        class="menu-toggle"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="isMenuOpen()"
+        aria-label="Toggle navigation"
+      >
+        <mat-icon>{{ isMenuOpen() ? 'close' : 'menu' }}</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <nav class="nav-mobile" [class.open]="isMenuOpen()">
+    <ul class="nav-mobile-list">
+      <li *ngFor="let item of navigationItems" class="nav-mobile-item">
+        <a
+          [href]="item.anchor"
+          (click)="scrollToSection(item.anchor); $event.preventDefault()"
+          class="nav-mobile-link"
+        >
+          {{ translate(item.i18nKey) }}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
