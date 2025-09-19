@@ -28,6 +28,15 @@
 
 // Logo
 .logo {
+  a {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+  .img-logo {
+    height: 40px;
+    width: auto;
+  }
   .logo-text {
     font-size: 1.5rem;
     font-weight: 700;
@@ -219,7 +228,7 @@
   }
 
   .logo .logo-text {
-    font-size: 1.25rem;
+    display: none;
   }
 
   .nav-mobile-list {

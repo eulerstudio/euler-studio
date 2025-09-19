@@ -30,6 +30,14 @@
       font-weight: 700;
       margin-bottom: 1rem;
       color: var(--primary-white);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      img {
+        height: 52px;
+        margin-left: -12px;
+      }
     }
 
     .brand-tagline {

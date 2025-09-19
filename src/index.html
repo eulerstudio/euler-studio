@@ -27,7 +27,18 @@
 
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Favicon - Theme-aware -->
+  <link rel="icon" type="image/x-icon" href="favicon/light/favicon.ico" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/x-icon" href="favicon/dark/favicon.ico" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/x-icon" href="favicon/light/favicon.ico"> <!-- fallback -->
+
+  <!-- Standard favicon sizes -->
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/light/favicon-16x16.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/dark/favicon-16x16.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/light/favicon-32x32.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/dark/favicon-32x32.png" media="(prefers-color-scheme: dark)">
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -65,10 +76,17 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Euler Studio">
   <meta name="mobile-web-app-capable" content="yes">
-  <link rel="apple-touch-icon" href="icons/icon-192x192.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-192x192.png">
-  <link rel="apple-touch-icon" sizes="167x167" href="icons/icon-152x152.png">
+
+  <!-- Apple Touch Icons - Theme-aware -->
+  <link rel="apple-touch-icon" href="favicon/light/apple-touch-icon.png" media="(prefers-color-scheme: light)">
+  <link rel="apple-touch-icon" href="favicon/dark/apple-touch-icon.png" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" href="favicon/light/apple-touch-icon.png"> <!-- fallback -->
+
+  <!-- Android Chrome Icons -->
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon/light/android-chrome-192x192.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon/dark/android-chrome-192x192.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon/light/android-chrome-512x512.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon/dark/android-chrome-512x512.png" media="(prefers-color-scheme: dark)">
 </head>
 <body>
   <app-root></app-root>
