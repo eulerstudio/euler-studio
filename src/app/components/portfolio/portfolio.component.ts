@@ -1,27 +1,7 @@
-import { Component, ChangeDetectionStrategy, signal, OnInit, inject, ElementRef, PLATFORM_ID } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal, OnInit, inject, ElementRef, PLATFORM_ID, computed } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { I18nService } from '../../services/i18n.service';
-
-interface Project {
-  id: string;
-  name: string;
-  category: string;
-  url?: string;
-  description: {
-    en: string;
-    id: string;
-    zh: string;
-  };
-  technologies: string[];
-  year: number;
-  featured: boolean;
-  image?: string;
-}
-
-interface ProjectsData {
-  projects: Project[];
-}
+import { PROJECTS, PROJECT_CATEGORIES, type Project } from '../../constants/projects';
 
 @Component({
   selector: 'app-portfolio',
@@ -33,106 +13,26 @@ interface ProjectsData {
 })
 export class PortfolioComponent implements OnInit {
   private elementRef = inject(ElementRef);
-  private http = inject(HttpClient);
   private platformId = inject(PLATFORM_ID);
   private i18n = inject(I18nService);
 
   isVisible = signal(false);
-  projects = signal<Project[]>([]);
+  projects = signal<Project[]>(PROJECTS);
   selectedCategory = signal<string>('all');
-  currentLang = signal<'en' | 'id' | 'zh'>('en');
 
-  categories = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'Industrial Services', label: 'Industrial' },
-    { id: 'Automotive', label: 'Automotive' },
-    { id: 'Corporate', label: 'Corporate' }
-  ];
+  // Computed signal that automatically updates when i18n service changes
+  currentLang = computed(() => this.i18n.getCurrentLocale() as 'en' | 'id' | 'zh');
+
+  categories = PROJECT_CATEGORIES;
 
   ngOnInit(): void {
-    this.loadProjects();
     this.setupIntersectionObserver();
-    // Sync current language with i18n service
-    this.currentLang.set(this.i18n.getCurrentLocale() as 'en' | 'id' | 'zh');
   }
 
   translate(key: string): string {
     return this.i18n.translate(key);
   }
 
-  private loadProjects(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.http.get<ProjectsData>('/data/projects.json').subscribe({
-        next: (data) => {
-          this.projects.set(data.projects);
-        },
-        error: (error) => {
-          console.error('Error loading projects:', error);
-          this.loadFallbackProjects();
-        }
-      });
-    } else {
-      // Server-side rendering: use fallback data
-      this.loadFallbackProjects();
-    }
-  }
-
-  private loadFallbackProjects(): void {
-    this.projects.set([
-          {
-            id: 'arsitag',
-            name: 'Arsitag',
-            category: 'Architecture Platform',
-            description: {
-              en: 'Digital architecture platform connecting architects with clients',
-              id: 'Platform arsitektur digital yang menghubungkan arsitek dengan klien',
-              zh: '连接建筑师与客户的数字建筑平台'
-            },
-            technologies: ['Angular', 'Node.js', 'MongoDB'],
-            year: 2023,
-            featured: true
-          },
-          {
-            id: 'omi-agency',
-            name: 'Omi Agency',
-            category: 'Creative Agency',
-            description: {
-              en: 'Creative agency website showcasing innovative design solutions',
-              id: 'Website agensi kreatif yang menampilkan solusi desain inovatif',
-              zh: '展示创新设计解决方案的创意机构网站'
-            },
-            technologies: ['React', 'Next.js', 'TypeScript'],
-            year: 2023,
-            featured: true
-          },
-          {
-            id: 'kaizer-coating',
-            name: 'Kaizer Coating',
-            category: 'Industrial Services',
-            description: {
-              en: 'Professional coating services website with portfolio showcase',
-              id: 'Website layanan coating profesional dengan showcase portfolio',
-              zh: '专业涂层服务网站及作品展示'
-            },
-            technologies: ['Vue.js', 'Laravel', 'MySQL'],
-            year: 2024,
-            featured: true
-          },
-          {
-            id: 'nob1-racing',
-            name: 'Nob1 Racing',
-            category: 'Automotive',
-            description: {
-              en: 'High-performance racing team website with event management',
-              id: 'Website tim balap performa tinggi dengan manajemen event',
-              zh: '高性能赛车队网站及赛事管理'
-            },
-            technologies: ['Angular', 'Express.js', 'PostgreSQL'],
-            year: 2024,
-            featured: true
-          }
-        ]);
-  }
 
   private setupIntersectionObserver(): void {
     if (isPlatformBrowser(this.platformId) && 'IntersectionObserver' in window) {

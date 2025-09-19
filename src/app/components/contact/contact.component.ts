@@ -161,7 +161,8 @@ export class ContactComponent implements OnInit {
   }
 
   openMaps(): void {
-    const mapsUrl = `https://maps.google.com/?q=${encodeURIComponent(this.contactInfo.address.full)}`;
+    const fullAddress = this.translate('contact.address.full');
+    const mapsUrl = `https://maps.google.com/?q=${encodeURIComponent(fullAddress)}`;
     window.open(mapsUrl, '_blank');
   }
 }

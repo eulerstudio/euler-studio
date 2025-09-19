@@ -1,4 +1,5 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 export interface Translation {
   [key: string]: string | string[] | Translation;
@@ -12,6 +13,8 @@ export interface Translations {
   providedIn: 'root'
 })
 export class I18nService {
+  private platformId = inject(PLATFORM_ID);
+  private readonly STORAGE_KEY = 'euler-studio-language';
   private currentLocale = signal<string>('en');
 
   private translations: Translations = {
@@ -87,11 +90,20 @@ export class I18nService {
           email: 'Email',
           phone: 'Phone',
           office: 'Office',
+          address: 'Address',
           full_name: 'Full Name',
           email_address: 'Email Address',
           company: 'Company',
           service_interest: 'Service of Interest',
           project_details: 'Project Details'
+        },
+        address: {
+          street: 'Gedung Bursa Efek Indonesia Tower 1',
+          unit: 'Level 3 Unit 304 SCBD, Senayan',
+          city: 'South Jakarta',
+          postal_code: '12190',
+          country: 'Indonesia',
+          full: 'Gedung Bursa Efek Indonesia Tower 1, Level 3 Unit 304 SCBD, Senayan, South Jakarta 12190, Indonesia'
         },
         placeholders: {
           full_name: 'Your full name',
@@ -241,11 +253,20 @@ export class I18nService {
           email: 'Email',
           phone: 'Telepon',
           office: 'Kantor',
+          address: 'Alamat',
           full_name: 'Nama Lengkap',
           email_address: 'Alamat Email',
           company: 'Perusahaan',
           service_interest: 'Layanan yang Diminati',
           project_details: 'Detail Proyek'
+        },
+        address: {
+          street: 'Gedung Bursa Efek Indonesia Tower 1',
+          unit: 'Level 3 Unit 304 SCBD, Senayan',
+          city: 'Jakarta Selatan',
+          postal_code: '12190',
+          country: 'Indonesia',
+          full: 'Gedung Bursa Efek Indonesia Tower 1, Level 3 Unit 304 SCBD, Senayan, Jakarta Selatan 12190, Indonesia'
         },
         placeholders: {
           full_name: 'Nama lengkap Anda',
@@ -395,11 +416,20 @@ export class I18nService {
           email: '电子邮件',
           phone: '电话',
           office: '办公室',
+          address: '地址',
           full_name: '全名',
           email_address: '电子邮件地址',
           company: '公司',
           service_interest: '感兴趣的服务',
           project_details: '项目详情'
+        },
+        address: {
+          street: '印度尼西亚证券交易所大厦1号塔',
+          unit: '3层304单元 SCBD, Senayan',
+          city: '南雅加达',
+          postal_code: '12190',
+          country: '印度尼西亚',
+          full: '印度尼西亚证券交易所大厦1号塔，3层304单元 SCBD, Senayan，南雅加达 12190，印度尼西亚'
         },
         placeholders: {
           full_name: '您的全名',
@@ -479,14 +509,50 @@ export class I18nService {
     }
   };
 
+  constructor() {
+    // Initialize locale after translations are available
+    this.currentLocale.set(this.getInitialLocale());
+  }
+
   getCurrentLocale() {
     return this.currentLocale();
+  }
+
+  private getInitialLocale(): string {
+    if (isPlatformBrowser(this.platformId)) {
+      // Check for pre-loaded language from HTML script
+      const preLoadedLang = (window as any).__EULER_INITIAL_LANG__;
+      if (preLoadedLang && this.translations[preLoadedLang]) {
+        return preLoadedLang;
+      }
+
+      // Fallback: Try to get from localStorage directly
+      const saved = localStorage.getItem(this.STORAGE_KEY);
+      if (saved && this.translations[saved]) {
+        return saved;
+      }
+
+      // Fall back to browser language
+      const browserLang = navigator.language.split('-')[0];
+      if (this.translations[browserLang]) {
+        return browserLang;
+      }
+    }
+
+    // Default to English
+    return 'en';
+  }
+
+  private saveToStorage(locale: string): void {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem(this.STORAGE_KEY, locale);
+    }
   }
 
   setLocale(locale: string): void {
     if (this.translations[locale]) {
       this.currentLocale.set(locale);
-      // In a full implementation, this would also handle URL updates and localStorage
+      this.saveToStorage(locale);
     }
   }
 

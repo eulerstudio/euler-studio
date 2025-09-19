@@ -55,9 +55,9 @@
           <div class="contact-details">
             <h4 class="contact-label" i18n="@@contact.labels.office">{{ translate('contact.labels.office') }}</h4>
             <div class="contact-value address" (click)="openMaps()">
-              <div>{{ contactInfo.address.line1 }}</div>
-              <div>{{ contactInfo.address.line2 }}</div>
-              <div>{{ contactInfo.address.line3 }}</div>
+              <div>{{ translate('contact.address.street') }}</div>
+              <div>{{ translate('contact.address.unit') }}</div>
+              <div>{{ translate('contact.address.city') }} {{ translate('contact.address.postal_code') }}</div>
             </div>
           </div>
         </div>
