@@ -399,6 +399,9 @@
 }
 
 @media (max-width: 768px) {
+  .info-title {
+    text-align: center;
+  }
   .contact {
     padding: 4rem 1.5rem;
   }
@@ -434,9 +437,120 @@
     gap: 0.75rem;
     text-align: center;
     padding: 1rem;
+
+    .contact-icon {
+      justify-self: center;
+    }
   }
 
   .submit-btn {
     width: 100%;
+  }
+}
+
+// Extra small viewport fixes (320px and smaller)
+@media (max-width: 320px) {
+  .contact {
+    padding: 2.5rem 0.75rem;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+    line-height: 1.2;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .contact-content {
+    gap: 1.5rem;
+  }
+
+  .contact-item {
+    padding: 0.875rem;
+    margin-bottom: 1.5rem;
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      justify-self: center;
+
+      mat-icon {
+        font-size: 1.1rem;
+      }
+    }
+
+    .contact-details {
+      .contact-label {
+        font-size: 0.85rem;
+        margin-bottom: 0.375rem;
+      }
+
+      .contact-value {
+        font-size: 1rem;
+        line-height: 1.4;
+
+        &.address div {
+          margin-bottom: 0.125rem;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+  .business-hours {
+    padding: 1.25rem 1rem;
+
+    .hours-title {
+      font-size: 1rem;
+      margin-bottom: 0.875rem;
+    }
+
+    .hours-item {
+      font-size: 0.85rem;
+      margin-bottom: 0.375rem;
+    }
+  }
+
+  .form-title {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .submit-btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9rem;
+    min-width: 120px;
+  }
+
+  .additional-info {
+    margin-top: 2rem;
+  }
+
+  .info-card {
+    padding: 1.25rem 1rem;
+
+    mat-icon {
+      font-size: 2rem;
+      width: 2rem;
+      height: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
   }
 }

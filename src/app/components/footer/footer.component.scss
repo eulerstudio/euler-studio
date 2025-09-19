@@ -273,30 +273,39 @@
   }
 
   .company-info {
-    text-align: center;
+    text-align: left;
+
+    .brand-tagline {
+      max-width: 100%;
+    }
 
     .contact-summary {
       max-width: 300px;
-      margin: 2rem auto;
+      margin: 2rem 0;
     }
 
     .social-links {
-      justify-content: center;
+      justify-content: flex-start;
     }
   }
 
   .footer-section {
-    text-align: center;
+    text-align: left;
 
     .footer-links {
       max-width: 200px;
-      margin: 0 auto;
+      margin: 0;
     }
   }
 
   .business-info {
     max-width: 250px;
-    margin: 0 auto 2rem;
+    margin: 0 0 2rem;
+    text-align: left;
+
+    .hours-item {
+      justify-content: space-between;
+    }
   }
 
   .footer-bottom-content {
@@ -340,5 +349,37 @@
   .legal-links {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+
+  .footer-links {
+    li {
+      margin-bottom: 0!important;
+    }
+  }
+
+  .section-title {
+    margin-bottom: 1rem!important;
+  }
+
+  .company-brand .brand-tagline {
+    max-width: 100% !important;
+    margin: 0!important;
+  }
+
+  .business-info {
+    text-align: left;
+    justify-content: flex-start;
+    max-width: 100%;
+
+    .hours-item {
+      display: flex;
+      justify-content: flex-start;
+      max-width: 100%;
+      margin: 0 0 0.5rem;
+
+      .day {
+        width: 150px;
+      }
+    }
   }
 }

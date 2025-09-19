@@ -10,7 +10,7 @@
         "id": "Website layanan coating profesional dengan showcase portfolio komprehensif",
         "zh": "专业涂层服务网站及全面作品展示"
       },
-      "technologies": ["Angular", "NestJS", "TypeScript"],
+      "technologies": ["Angular", "NestJS"],
       "year": 2024,
       "featured": true,
       "image": "/images/projects/kaizer-coating-hero.jpg"
@@ -25,7 +25,7 @@
         "id": "Website tim balap performa tinggi dengan sistem manajemen event",
         "zh": "高性能赛车队网站及赛事管理系统"
       },
-      "technologies": ["Angular", "NestJS", "TypeScript"],
+      "technologies": ["Angular", "NestJS"],
       "year": 2024,
       "featured": true,
       "image": "/images/projects/nobi-racing-hero.jpg"
@@ -40,7 +40,7 @@
         "id": "Website korporat dengan solusi bisnis dan layanan komprehensif",
         "zh": "企业网站提供全面的商业解决方案和服务"
       },
-      "technologies": ["Angular", "NestJS", "TypeScript"],
+      "technologies": ["Angular", "NestJS"],
       "year": 2024,
       "featured": true,
       "image": "/images/projects/pt-jams-hero.jpg"

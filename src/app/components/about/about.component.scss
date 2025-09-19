@@ -358,3 +358,81 @@
     font-size: 2rem;
   }
 }
+
+// Extra small viewport fixes (320px and smaller)
+@media (max-width: 320px) {
+  .about {
+    padding: 2.5rem 0.75rem;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+    line-height: 1.2;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .about-content {
+    gap: 2.5rem;
+  }
+
+  .services-title {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+  }
+
+  .service-card {
+    padding: 1.25rem 1rem;
+    text-align: center;
+
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .service-title {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .service-description {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+  }
+
+  .visual-element {
+    width: 160px;
+    height: 100px;
+  }
+
+  .stats-grid {
+    padding: 1.5rem 0.75rem;
+    gap: 1rem;
+  }
+
+  .stat-item .stat-number {
+    font-size: 1.75rem;
+  }
+
+  .mission-content {
+    padding: 1.5rem 1rem;
+
+    .mission-title {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .mission-text {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+  }
+}

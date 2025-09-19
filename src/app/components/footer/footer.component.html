@@ -25,20 +25,6 @@
             <span>Jakarta, Indonesia</span>
           </div>
         </div>
-
-        <!-- Social Links -->
-        <div class="social-links">
-          <a
-            *ngFor="let social of socialLinks"
-            [href]="social.url"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-            [attr.aria-label]="social.platform"
-          >
-            <mat-icon>{{ social.icon }}</mat-icon>
-          </a>
-        </div>
       </div>
 
       <!-- Quick Links -->
@@ -100,16 +86,6 @@
         <div class="copyright">
           <p>&copy; {{ currentYear }} Euler Studio. <span i18n="@@footer.copyright">{{ translate('footer.copyright') }}</span></p>
         </div>
-
-        <div class="legal-links">
-          <a href="/privacy" class="legal-link" i18n="@@footer.legal.privacy">{{ translate('footer.legal.privacy') }}</a>
-          <a href="/terms" class="legal-link" i18n="@@footer.legal.terms">{{ translate('footer.legal.terms') }}</a>
-        </div>
-
-        <!-- Back to Top -->
-        <button class="back-to-top" (click)="scrollToTop()" aria-label="Back to top">
-          <mat-icon>keyboard_arrow_up</mat-icon>
-        </button>
       </div>
     </div>
   </div>
