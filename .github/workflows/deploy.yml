@@ -34,28 +34,52 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
-          # Clear existing files and create directory with proper permissions
-          sudo rm -rf /var/www/euler.id/*
+          # Create directory if it doesn't exist
           sudo mkdir -p /var/www/euler.id
+
+          # Temporarily give deployment user ownership for sync
           sudo chown -R $USER:$USER /var/www/euler.id
           sudo chmod -R 755 /var/www/euler.id
 
-    - name: Copy build files to server
-      uses: appleboy/scp-action@v0.1.7
-      with:
-        host: ${{ secrets.SERVER_HOST }}
-        username: ${{ secrets.SERVER_USER }}
-        key: ${{ secrets.SERVER_SSH_KEY }}
-        source: "dist/euler-studio/browser/*"
-        target: "/var/www/euler.id/"
-        strip_components: 3
-
-    - name: Set web server permissions
+    - name: Sync build files to server (rsync)
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.SERVER_HOST }}
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
+          # Create temporary staging directory
+          mkdir -p ~/staging/euler-studio
+
+    - name: Copy files to staging
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        source: "dist/euler-studio/browser/*"
+        target: "~/staging/euler-studio/"
+        strip_components: 3
+
+    - name: Sync to production and set permissions
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        script: |
+          # Sync files from staging to production (preserves existing files, only updates changed ones)
+          rsync -av --delete-after ~/staging/euler-studio/ /var/www/euler.id/
+
+          # Clean up staging
+          rm -rf ~/staging/euler-studio
+
+          # Set proper web server ownership and permissions
           sudo chown -R www-data:www-data /var/www/euler.id/
           sudo chmod -R 755 /var/www/euler.id/
+          sudo find /var/www/euler.id/ -type f -exec chmod 644 {} \;
+
+          # Ensure service worker and manifest are accessible
+          sudo chmod 644 /var/www/euler.id/ngsw.json || true
+          sudo chmod 644 /var/www/euler.id/ngsw-worker.js || true
+          sudo chmod 644 /var/www/euler.id/manifest.webmanifest || true

@@ -1,9 +1,15 @@
 {
-  "name": "euler-studio",
-  "short_name": "euler-studio",
+  "name": "Euler Studio - Digital Solutions & Web Development",
+  "short_name": "Euler Studio",
+  "description": "Professional digital solutions, web development, and innovation services. Expert Angular, NestJS, and TypeScript development in Jakarta, Indonesia.",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "scope": "./",
   "start_url": "./",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "categories": ["business", "development", "technology"],
+  "lang": "en",
   "icons": [
     {
       "src": "icons/icon-72x72.png",
