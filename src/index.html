@@ -70,6 +70,38 @@
     ]
   }
   </script>
+
+  <!-- Language Pre-initialization Script -->
+  <script>
+    (function() {
+      // Pre-load language preference to prevent jitter
+      const STORAGE_KEY = 'euler-studio-language';
+      const supportedLangs = ['en', 'id', 'zh'];
+
+      let initialLang = 'en';
+
+      try {
+        // Try localStorage first
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved && supportedLangs.includes(saved)) {
+          initialLang = saved;
+        } else if (navigator.language) {
+          // Fall back to browser language
+          const browserLang = navigator.language.split('-')[0];
+          if (supportedLangs.includes(browserLang)) {
+            initialLang = browserLang;
+          }
+        }
+      } catch (e) {
+        // Fallback to English if localStorage fails
+        initialLang = 'en';
+      }
+
+      // Store the initial language globally for Angular to pick up
+      window.__EULER_INITIAL_LANG__ = initialLang;
+    })();
+  </script>
+
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-capable" content="yes">
