@@ -1,11 +1,25 @@
 .hero {
-  min-height: 100vh;
+  min-height: max(100vh, 920px); // Ensure minimum height for content visibility
+  min-height: max(100dvh, 920px); // Dynamic viewport height for better mobile support
   display: grid;
   align-items: center;
   padding: 6rem 2rem 4rem;
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, var(--primary-white) 0%, var(--gray-50) 100%);
+
+  // Safari iOS specific fixes
+  @supports (-webkit-touch-callout: none) {
+    min-height: max(-webkit-fill-available, 920px);
+    padding-top: max(6rem, env(safe-area-inset-top) + 4rem);
+  }
+
+  // For very short viewports, ensure content is always accessible
+  @media (max-height: 920px) {
+    align-items: flex-start;
+    padding-top: max(8rem, env(safe-area-inset-top) + 6rem);
+    min-height: auto;
+  }
 
   &::before {
     content: '';
@@ -260,7 +274,21 @@
 @media (max-width: 768px) {
   .hero {
     padding: 5rem 1.5rem 3rem;
-    min-height: 90vh;
+    min-height: max(90vh, 800px);
+    min-height: max(90dvh, 800px); // Dynamic viewport height for mobile
+
+    // iOS Safari specific fixes
+    @supports (-webkit-touch-callout: none) {
+      min-height: max(-webkit-fill-available, 800px);
+      padding-top: max(5rem, env(safe-area-inset-top) + 3rem);
+    }
+
+    // For short mobile viewports
+    @media (max-height: 800px) {
+      align-items: flex-start;
+      padding-top: max(7rem, env(safe-area-inset-top) + 5rem);
+      min-height: auto;
+    }
   }
 
   .hero-actions {
@@ -283,7 +311,23 @@
 
 @media (max-width: 480px) {
   .hero {
-    padding: 4rem 1rem 2rem;
+    padding: 8rem 1rem 6rem;
+    min-height: max(80vh, 700px);
+    min-height: max(80dvh, 700px);
+
+    // iOS Safari specific fixes for small screens
+    @supports (-webkit-touch-callout: none) {
+      padding-top: max(4rem, env(safe-area-inset-top) + 2rem);
+      padding-bottom: max(2rem, env(safe-area-inset-bottom) + 1rem);
+      min-height: max(-webkit-fill-available, 700px);
+    }
+
+    // For very short mobile viewports
+    @media (max-height: 700px) {
+      align-items: flex-start;
+      padding-top: max(6rem, env(safe-area-inset-top) + 4rem);
+      min-height: auto;
+    }
   }
 
   .hero-container {
@@ -303,7 +347,7 @@
 // Extra small viewport fixes (320px and smaller)
 @media (max-width: 320px) {
   .hero {
-    padding: 3rem 0.75rem 1.5rem;
+    padding: 8rem 0.75rem 6rem;
   }
 
   .hero-container {
