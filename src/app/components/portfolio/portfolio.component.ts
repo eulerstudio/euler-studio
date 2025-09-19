@@ -1,11 +1,13 @@
 import { Component, ChangeDetectionStrategy, signal, OnInit, inject, ElementRef, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { I18nService } from '../../services/i18n.service';
 
 interface Project {
   id: string;
   name: string;
   category: string;
+  url?: string;
   description: {
     en: string;
     id: string;
@@ -14,6 +16,7 @@ interface Project {
   technologies: string[];
   year: number;
   featured: boolean;
+  image?: string;
 }
 
 interface ProjectsData {
@@ -32,6 +35,7 @@ export class PortfolioComponent implements OnInit {
   private elementRef = inject(ElementRef);
   private http = inject(HttpClient);
   private platformId = inject(PLATFORM_ID);
+  private i18n = inject(I18nService);
 
   isVisible = signal(false);
   projects = signal<Project[]>([]);
@@ -40,20 +44,25 @@ export class PortfolioComponent implements OnInit {
 
   categories = [
     { id: 'all', label: 'All Projects' },
-    { id: 'Architecture Platform', label: 'Architecture' },
-    { id: 'Creative Agency', label: 'Creative' },
     { id: 'Industrial Services', label: 'Industrial' },
-    { id: 'Automotive', label: 'Automotive' }
+    { id: 'Automotive', label: 'Automotive' },
+    { id: 'Corporate', label: 'Corporate' }
   ];
 
   ngOnInit(): void {
     this.loadProjects();
     this.setupIntersectionObserver();
+    // Sync current language with i18n service
+    this.currentLang.set(this.i18n.getCurrentLocale() as 'en' | 'id' | 'zh');
+  }
+
+  translate(key: string): string {
+    return this.i18n.translate(key);
   }
 
   private loadProjects(): void {
     if (isPlatformBrowser(this.platformId)) {
-      this.http.get<ProjectsData>('/assets/data/projects.json').subscribe({
+      this.http.get<ProjectsData>('/data/projects.json').subscribe({
         next: (data) => {
           this.projects.set(data.projects);
         },
@@ -162,5 +171,20 @@ export class PortfolioComponent implements OnInit {
 
   getProjectDescription(project: Project): string {
     return project.description[this.currentLang()];
+  }
+
+  viewProject(project: Project): void {
+    // Could open a modal or navigate to project detail page
+    console.log('View project details:', project);
+    // For now, just open the live demo
+    if (project.url) {
+      this.openLiveDemo(project);
+    }
+  }
+
+  openLiveDemo(project: Project): void {
+    if (project.url && isPlatformBrowser(this.platformId)) {
+      window.open(project.url, '_blank');
+    }
   }
 }

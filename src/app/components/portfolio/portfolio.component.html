@@ -2,26 +2,25 @@
   <div class="portfolio-container">
     <!-- Section Header -->
     <div class="section-header">
-      <h2 class="section-title">Our Portfolio</h2>
-      <p class="section-subtitle">
-        Showcasing our commitment to excellence through innovative digital solutions
-        that drive real business results.
+      <h2 class="section-title" i18n="@@portfolio.title">{{ translate('portfolio.title') }}</h2>
+      <p class="section-subtitle" i18n="@@portfolio.subtitle">
+        {{ translate('portfolio.subtitle') }}
       </p>
     </div>
 
-    <!-- Category Filter -->
-    <div class="filter-section">
-      <div class="filter-tabs">
-        <button
-          *ngFor="let category of categories"
-          class="filter-tab"
-          [class.active]="selectedCategory() === category.id"
-          (click)="selectCategory(category.id)"
-        >
-          {{ category.label }}
-        </button>
-      </div>
-    </div>
+<!--    &lt;!&ndash; Category Filter &ndash;&gt;-->
+<!--    <div class="filter-section">-->
+<!--      <div class="filter-tabs">-->
+<!--        <button-->
+<!--          *ngFor="let category of categories"-->
+<!--          class="filter-tab"-->
+<!--          [class.active]="selectedCategory() === category.id"-->
+<!--          (click)="selectCategory(category.id)"-->
+<!--        >-->
+<!--          {{ category.label }}-->
+<!--        </button>-->
+<!--      </div>-->
+<!--    </div>-->
 
     <!-- Projects Grid -->
     <div class="projects-section">
@@ -31,18 +30,26 @@
           class="project-card"
           [style.animation-delay.ms]="i * 150"
         >
-          <!-- Project Image Placeholder -->
+          <!-- Project Image -->
           <div class="project-image">
-            <div class="image-placeholder">
-              <span class="project-initial">{{ project.name.charAt(0) }}</span>
-            </div>
+            <img
+              *ngIf="project.image; else imagePlaceholder"
+              [src]="project.image"
+              [alt]="project.name + ' screenshot'"
+              class="project-screenshot"
+              loading="lazy"
+            />
+            <ng-template #imagePlaceholder>
+              <div class="image-placeholder">
+                <span class="project-initial">{{ project.name.charAt(0) }}</span>
+              </div>
+            </ng-template>
             <div class="project-overlay">
               <div class="overlay-content">
                 <h4 class="overlay-title">{{ project.name }}</h4>
                 <p class="overlay-category">{{ project.category }}</p>
                 <div class="overlay-actions">
-                  <button class="action-btn primary">View Details</button>
-                  <button class="action-btn secondary">Live Demo</button>
+                  <button class="action-btn primary" (click)="viewProject(project)" i18n="@@portfolio.live_demo">{{ translate('portfolio.live_demo') }}</button>
                 </div>
               </div>
             </div>
@@ -52,7 +59,7 @@
           <div class="project-info">
             <div class="project-header">
               <h3 class="project-title">{{ project.name }}</h3>
-              <span class="project-year">{{ project.year }}</span>
+<!--              <span class="project-year">{{ project.year }}</span>-->
             </div>
 
             <p class="project-description">
@@ -71,7 +78,7 @@
             <div class="project-meta">
               <span class="project-category">{{ project.category }}</span>
               <div class="project-status" *ngIf="project.featured">
-                <span class="status-badge">Featured</span>
+                <span class="status-badge" i18n="@@portfolio.featured">{{ translate('portfolio.featured') }}</span>
               </div>
             </div>
           </div>
@@ -82,9 +89,9 @@
       <div class="empty-state" *ngIf="filteredProjects().length === 0">
         <div class="empty-content">
           <div class="empty-icon">📂</div>
-          <h3 class="empty-title">No Projects Found</h3>
-          <p class="empty-description">
-            No projects match the selected category. Try selecting a different filter.
+          <h3 class="empty-title" i18n="@@portfolio.empty_title">{{ translate('portfolio.empty_title') }}</h3>
+          <p class="empty-description" i18n="@@portfolio.empty_description">
+            {{ translate('portfolio.empty_description') }}
           </p>
         </div>
       </div>
@@ -93,11 +100,11 @@
     <!-- Call to Action -->
     <div class="portfolio-cta">
       <div class="cta-content">
-        <h3 class="cta-title">Ready to Start Your Project?</h3>
-        <p class="cta-description">
-          Let's discuss how we can bring your vision to life with our expertise and creativity.
+        <h3 class="cta-title" i18n="@@portfolio.cta_title">{{ translate('portfolio.cta_title') }}</h3>
+        <p class="cta-description" i18n="@@portfolio.cta_description">
+          {{ translate('portfolio.cta_description') }}
         </p>
-        <a href="#contact" class="cta-button">Get In Touch</a>
+        <a href="#contact" class="cta-button" i18n="@@portfolio.cta_button">{{ translate('portfolio.cta_button') }}</a>
       </div>
     </div>
   </div>

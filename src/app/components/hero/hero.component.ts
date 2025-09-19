@@ -1,5 +1,6 @@
-import { Component, ChangeDetectionStrategy, signal, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal, OnInit, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-hero',
@@ -10,15 +11,19 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeroComponent implements OnInit {
+  private i18nService = inject(I18nService);
+
   isVisible = signal(false);
   currentWordIndex = signal(0);
 
-  typingWords = [
-    'Digital Solutions',
-    'Web Development',
-    'Innovation',
-    'Excellence'
-  ];
+  typingWords = computed(() => {
+    const words = this.i18nService.translate('hero.typing_words');
+    return Array.isArray(words) ? words : ['Digital Solutions', 'Web Development', 'Innovation', 'Excellence'];
+  });
+
+  translate(key: string): string {
+    return this.i18nService.translate(key);
+  }
 
   ngOnInit(): void {
     // Trigger entrance animation
@@ -33,7 +38,7 @@ export class HeroComponent implements OnInit {
   private startTypingAnimation(): void {
     setInterval(() => {
       this.currentWordIndex.update(index =>
-        (index + 1) % this.typingWords.length
+        (index + 1) % this.typingWords().length
       );
     }, 3000);
   }

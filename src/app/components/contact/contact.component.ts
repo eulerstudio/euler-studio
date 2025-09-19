@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { CONTACT_INFO } from '../../constants/contact';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-contact',
@@ -26,6 +27,7 @@ export class ContactComponent implements OnInit {
   private elementRef = inject(ElementRef);
   private fb = inject(FormBuilder);
   private platformId = inject(PLATFORM_ID);
+  private i18n = inject(I18nService);
 
   isVisible = signal(false);
   isSubmitting = signal(false);
@@ -35,11 +37,11 @@ export class ContactComponent implements OnInit {
   contactForm: FormGroup;
 
   services = [
-    { value: 'web-development', label: 'Web Development' },
-    { value: 'digital-strategy', label: 'Digital Strategy' },
-    { value: 'ui-ux-design', label: 'UI/UX Design' },
-    { value: 'consulting', label: 'Technical Consulting' },
-    { value: 'other', label: 'Other' }
+    { value: 'web-development', labelKey: 'contact.services.web_development' },
+    { value: 'digital-strategy', labelKey: 'contact.services.digital_strategy' },
+    { value: 'ui-ux-design', labelKey: 'contact.services.ui_ux_design' },
+    { value: 'consulting', labelKey: 'contact.services.consulting' },
+    { value: 'other', labelKey: 'contact.services.other' }
   ];
 
   constructor() {
@@ -48,13 +50,16 @@ export class ContactComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       company: [''],
       service: ['', Validators.required],
-      budget: [''],
       message: ['', [Validators.required, Validators.minLength(10)]]
     });
   }
 
   ngOnInit(): void {
     this.setupIntersectionObserver();
+  }
+
+  translate(key: string): string {
+    return this.i18n.translate(key);
   }
 
   private setupIntersectionObserver(): void {
@@ -83,7 +88,33 @@ export class ContactComponent implements OnInit {
     if (this.contactForm.valid && !this.isSubmitting()) {
       this.isSubmitting.set(true);
 
-      // Simulate API call
+      // Get form data
+      const formData = this.contactForm.value;
+      const selectedService = this.services.find(s => s.value === formData.service);
+      const serviceLabel = selectedService ? this.translate(selectedService.labelKey) : formData.service;
+
+      // Format WhatsApp message
+      let message = `Hello! I'm interested in working with Euler Studio.\n\n`;
+      message += `*Name:* ${formData.name}\n`;
+      message += `*Email:* ${formData.email}\n`;
+      if (formData.company) {
+        message += `*Company:* ${formData.company}\n`;
+      }
+      message += `*Service:* ${serviceLabel}\n\n`;
+      message += `*Message:*\n${formData.message}\n\n`;
+      message += `Looking forward to hearing from you!`;
+
+      // Create WhatsApp URL (remove + from phone number for WhatsApp API)
+      const phoneNumber = this.contactInfo.phone.replace('+', '');
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+      // Open WhatsApp in new window/tab
+      if (isPlatformBrowser(this.platformId)) {
+        window.open(whatsappUrl, '_blank');
+      }
+
+      // Show success state
       setTimeout(() => {
         this.isSubmitting.set(false);
         this.submitSuccess.set(true);
@@ -93,7 +124,7 @@ export class ContactComponent implements OnInit {
         setTimeout(() => {
           this.submitSuccess.set(false);
         }, 5000);
-      }, 2000);
+      }, 1000);
     } else {
       this.markAllFieldsAsTouched();
     }
@@ -108,9 +139,17 @@ export class ContactComponent implements OnInit {
   getFieldError(fieldName: string): string {
     const field = this.contactForm.get(fieldName);
     if (field?.errors && field.touched) {
-      if (field.errors['required']) return `${fieldName} is required`;
-      if (field.errors['email']) return 'Please enter a valid email';
-      if (field.errors['minlength']) return `${fieldName} is too short`;
+      if (field.errors['required']) {
+        if (fieldName === 'name') return this.translate('contact.validation.name_required');
+        if (fieldName === 'email') return this.translate('contact.validation.email_required');
+        if (fieldName === 'service') return this.translate('contact.validation.service_required');
+        if (fieldName === 'message') return this.translate('contact.validation.message_required');
+      }
+      if (field.errors['email']) return this.translate('contact.validation.email_invalid');
+      if (field.errors['minlength']) {
+        if (fieldName === 'name') return this.translate('contact.validation.name_min');
+        if (fieldName === 'message') return this.translate('contact.validation.message_min');
+      }
     }
     return '';
   }

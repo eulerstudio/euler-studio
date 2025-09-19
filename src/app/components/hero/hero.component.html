@@ -3,18 +3,12 @@
     <div class="hero-content">
       <!-- Main Heading -->
       <div class="hero-text">
-        <h1 class="hero-title">
-          <span class="title-line-1">Crafting</span>
-          <span class="title-line-2 typing-container">
-            <span class="typing-text">{{ typingWords[currentWordIndex()] }}</span>
-            <span class="cursor">|</span>
-          </span>
-          <span class="title-line-3">that Transform Ideas</span>
+        <h1 class="hero-title" i18n="@@hero.title">
+          {{ translate('hero.title') }}
         </h1>
 
-        <p class="hero-subtitle">
-          We are Euler Studio, a forward-thinking digital agency specializing in
-          creating exceptional web experiences that drive business growth and innovation.
+        <p class="hero-subtitle" i18n="@@hero.subtitle">
+          {{ translate('hero.subtitle') }}
         </p>
       </div>
 
@@ -23,16 +17,18 @@
         <button
           class="cta-primary"
           (click)="scrollToAbout()"
+          i18n="@@hero.cta_primary"
         >
-          Discover Our Work
+          {{ translate('hero.cta_primary') }}
         </button>
 
         <a
           href="#contact"
           class="cta-secondary"
           (click)="$event.preventDefault(); scrollToAbout()"
+          i18n="@@hero.cta_secondary"
         >
-          Get In Touch
+          {{ translate('hero.cta_secondary') }}
         </a>
       </div>
     </div>
@@ -49,6 +45,6 @@
   <!-- Scroll Indicator -->
   <div class="scroll-indicator">
     <div class="scroll-arrow"></div>
-    <span class="scroll-text">Scroll</span>
+    <span class="scroll-text" i18n="@@hero.scroll">{{ translate('hero.scroll') }}</span>
   </div>
 </section>

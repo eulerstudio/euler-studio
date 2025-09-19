@@ -2,16 +2,16 @@
   <div class="contact-container">
     <!-- Section Header -->
     <div class="section-header">
-      <h2 class="section-title">Get In Touch</h2>
-      <p class="section-subtitle">
-        Ready to transform your ideas into reality? Let's discuss your project and explore how we can help you succeed.
+      <h2 class="section-title" i18n="@@contact.title">{{ translate('contact.title') }}</h2>
+      <p class="section-subtitle" i18n="@@contact.subtitle">
+        {{ translate('contact.subtitle') }}
       </p>
     </div>
 
     <div class="contact-content">
       <!-- Contact Information -->
       <div class="contact-info-section">
-        <h3 class="info-title">Contact Information</h3>
+        <h3 class="info-title" i18n="@@contact.info_title">{{ translate('contact.info_title') }}</h3>
 
         <!-- Email -->
         <div class="contact-item">
@@ -19,7 +19,7 @@
             <mat-icon>email</mat-icon>
           </div>
           <div class="contact-details">
-            <h4 class="contact-label">Email</h4>
+            <h4 class="contact-label" i18n="@@contact.labels.email">{{ translate('contact.labels.email') }}</h4>
             <a
               [href]="'mailto:' + contactInfo.email"
               class="contact-value"
@@ -36,7 +36,7 @@
             <mat-icon>phone</mat-icon>
           </div>
           <div class="contact-details">
-            <h4 class="contact-label">Phone</h4>
+            <h4 class="contact-label" i18n="@@contact.labels.phone">{{ translate('contact.labels.phone') }}</h4>
             <a
               [href]="'tel:' + contactInfo.phone"
               class="contact-value"
@@ -53,7 +53,7 @@
             <mat-icon>location_on</mat-icon>
           </div>
           <div class="contact-details">
-            <h4 class="contact-label">Office</h4>
+            <h4 class="contact-label" i18n="@@contact.labels.office">{{ translate('contact.labels.office') }}</h4>
             <div class="contact-value address" (click)="openMaps()">
               <div>{{ contactInfo.address.line1 }}</div>
               <div>{{ contactInfo.address.line2 }}</div>
@@ -64,19 +64,19 @@
 
         <!-- Business Hours -->
         <div class="business-hours">
-          <h4 class="hours-title">Business Hours</h4>
+          <h4 class="hours-title" i18n="@@contact.business_hours">{{ translate('contact.business_hours') }}</h4>
           <div class="hours-list">
             <div class="hours-item">
-              <span>Monday - Friday</span>
-              <span>9:00 AM - 6:00 PM</span>
+              <span i18n="@@contact.schedule.monday_friday">{{ translate('contact.schedule.monday_friday') }}</span>
+              <span i18n="@@contact.schedule.weekday_hours">{{ translate('contact.schedule.weekday_hours') }}</span>
             </div>
             <div class="hours-item">
-              <span>Saturday</span>
-              <span>10:00 AM - 4:00 PM</span>
+              <span i18n="@@contact.schedule.saturday">{{ translate('contact.schedule.saturday') }}</span>
+              <span i18n="@@contact.schedule.saturday_hours">{{ translate('contact.schedule.saturday_hours') }}</span>
             </div>
             <div class="hours-item">
-              <span>Sunday</span>
-              <span>Closed</span>
+              <span i18n="@@contact.schedule.sunday">{{ translate('contact.schedule.sunday') }}</span>
+              <span i18n="@@contact.schedule.closed">{{ translate('contact.schedule.closed') }}</span>
             </div>
           </div>
         </div>
@@ -84,14 +84,14 @@
 
       <!-- Contact Form -->
       <div class="contact-form-section">
-        <h3 class="form-title">Send us a Message</h3>
+        <h3 class="form-title" i18n="@@contact.form_title">{{ translate('contact.form_title') }}</h3>
 
         <!-- Success Message -->
         <div class="success-message" *ngIf="submitSuccess()">
           <mat-icon>check_circle</mat-icon>
           <div class="success-content">
-            <h4>Message Sent Successfully!</h4>
-            <p>Thank you for contacting us. We'll get back to you within 24 hours.</p>
+            <h4 i18n="@@contact.success_title">{{ translate('contact.success_title') }}</h4>
+            <p i18n="@@contact.success_description">{{ translate('contact.success_description') }}</p>
           </div>
         </div>
 
@@ -100,14 +100,14 @@
           <!-- Name & Email Row -->
           <div class="form-row">
             <mat-form-field appearance="outline" class="form-field">
-              <mat-label>Full Name *</mat-label>
-              <input matInput formControlName="name" placeholder="Your full name">
+              <mat-label i18n="@@contact.labels.full_name">{{ translate('contact.labels.full_name') }} *</mat-label>
+              <input matInput formControlName="name" [placeholder]="translate('contact.placeholders.full_name')" i18n-placeholder="@@contact.placeholders.full_name">
               <mat-error *ngIf="getFieldError('name')">{{ getFieldError('name') }}</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="form-field">
-              <mat-label>Email Address *</mat-label>
-              <input matInput type="email" formControlName="email" placeholder="your@email.com">
+              <mat-label i18n="@@contact.labels.email_address">{{ translate('contact.labels.email_address') }} *</mat-label>
+              <input matInput type="email" formControlName="email" [placeholder]="translate('contact.placeholders.email')" i18n-placeholder="@@contact.placeholders.email">
               <mat-error *ngIf="getFieldError('email')">{{ getFieldError('email') }}</mat-error>
             </mat-form-field>
           </div>
@@ -115,44 +115,31 @@
           <!-- Company & Service Row -->
           <div class="form-row">
             <mat-form-field appearance="outline" class="form-field">
-              <mat-label>Company</mat-label>
-              <input matInput formControlName="company" placeholder="Your company name">
+              <mat-label i18n="@@contact.labels.company">{{ translate('contact.labels.company') }}</mat-label>
+              <input matInput formControlName="company" [placeholder]="translate('contact.placeholders.company')" i18n-placeholder="@@contact.placeholders.company">
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="form-field">
-              <mat-label>Service of Interest *</mat-label>
+              <mat-label i18n="@@contact.labels.service_interest">{{ translate('contact.labels.service_interest') }} *</mat-label>
               <mat-select formControlName="service">
                 <mat-option *ngFor="let service of services" [value]="service.value">
-                  {{ service.label }}
+                  {{ translate(service.labelKey) }}
                 </mat-option>
               </mat-select>
               <mat-error *ngIf="getFieldError('service')">{{ getFieldError('service') }}</mat-error>
             </mat-form-field>
           </div>
 
-          <!-- Budget -->
-          <div class="form-row">
-            <mat-form-field appearance="outline" class="form-field full-width">
-              <mat-label>Project Budget (Optional)</mat-label>
-              <mat-select formControlName="budget">
-                <mat-option value="under-10k">Under $10,000</mat-option>
-                <mat-option value="10k-25k">$10,000 - $25,000</mat-option>
-                <mat-option value="25k-50k">$25,000 - $50,000</mat-option>
-                <mat-option value="50k-100k">$50,000 - $100,000</mat-option>
-                <mat-option value="over-100k">Over $100,000</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-
           <!-- Message -->
           <div class="form-row">
             <mat-form-field appearance="outline" class="form-field full-width">
-              <mat-label>Project Details *</mat-label>
+              <mat-label i18n="@@contact.labels.project_details">{{ translate('contact.labels.project_details') }} *</mat-label>
               <textarea
                 matInput
                 formControlName="message"
                 rows="4"
-                placeholder="Tell us about your project, goals, and requirements..."
+                [placeholder]="translate('contact.placeholders.message')"
+                i18n-placeholder="@@contact.placeholders.message"
               ></textarea>
               <mat-error *ngIf="getFieldError('message')">{{ getFieldError('message') }}</mat-error>
             </mat-form-field>
@@ -166,10 +153,10 @@
               [disabled]="isSubmitting()"
               [class.loading]="isSubmitting()"
             >
-              <span *ngIf="!isSubmitting()">Send Message</span>
+              <span *ngIf="!isSubmitting()" i18n="@@contact.send_message">{{ translate('contact.send_message') }}</span>
               <span *ngIf="isSubmitting()">
                 <mat-icon class="loading-spinner">hourglass_empty</mat-icon>
-                Sending...
+                <span i18n="@@contact.sending">{{ translate('contact.sending') }}</span>
               </span>
             </button>
           </div>
@@ -182,20 +169,20 @@
       <div class="info-cards">
         <div class="info-card">
           <mat-icon>schedule</mat-icon>
-          <h4>Quick Response</h4>
-          <p>We typically respond to all inquiries within 24 hours during business days.</p>
+          <h4 i18n="@@contact.info_cards.quick_response.title">{{ translate('contact.info_cards.quick_response.title') }}</h4>
+          <p i18n="@@contact.info_cards.quick_response.description">{{ translate('contact.info_cards.quick_response.description') }}</p>
         </div>
 
         <div class="info-card">
           <mat-icon>security</mat-icon>
-          <h4>Confidential</h4>
-          <p>All project discussions are kept strictly confidential under our NDA policy.</p>
+          <h4 i18n="@@contact.info_cards.confidential.title">{{ translate('contact.info_cards.confidential.title') }}</h4>
+          <p i18n="@@contact.info_cards.confidential.description">{{ translate('contact.info_cards.confidential.description') }}</p>
         </div>
 
         <div class="info-card">
           <mat-icon>support</mat-icon>
-          <h4>Free Consultation</h4>
-          <p>Initial project consultation and estimate are completely free with no obligations.</p>
+          <h4 i18n="@@contact.info_cards.free_consultation.title">{{ translate('contact.info_cards.free_consultation.title') }}</h4>
+          <p i18n="@@contact.info_cards.free_consultation.description">{{ translate('contact.info_cards.free_consultation.description') }}</p>
         </div>
       </div>
     </div>

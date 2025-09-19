@@ -6,8 +6,8 @@
       <div class="footer-section company-info">
         <div class="company-brand">
           <h3 class="brand-name">Euler Studio</h3>
-          <p class="brand-tagline">
-            Transforming ideas into digital excellence through innovation, creativity, and technical expertise.
+          <p class="brand-tagline" i18n="@@footer.brand_tagline">
+            {{ translate('footer.brand_tagline') }}
           </p>
         </div>
 
@@ -43,7 +43,7 @@
 
       <!-- Quick Links -->
       <div class="footer-section">
-        <h4 class="section-title">Quick Links</h4>
+        <h4 class="section-title" i18n="@@footer.quick_links">{{ translate('footer.quick_links') }}</h4>
         <ul class="footer-links">
           <li *ngFor="let link of quickLinks">
             <a
@@ -51,7 +51,7 @@
               (click)="scrollToSection(link.anchor); $event.preventDefault()"
               class="footer-link"
             >
-              {{ link.label }}
+              {{ translate(link.labelKey) }}
             </a>
           </li>
         </ul>
@@ -59,36 +59,36 @@
 
       <!-- Services -->
       <div class="footer-section">
-        <h4 class="section-title">Services</h4>
+        <h4 class="section-title" i18n="@@footer.services">{{ translate('footer.services') }}</h4>
         <ul class="footer-links">
           <li *ngFor="let service of services">
-            <span class="service-item">{{ service }}</span>
+            <span class="service-item">{{ translate(service) }}</span>
           </li>
         </ul>
       </div>
 
       <!-- Business Info -->
       <div class="footer-section">
-        <h4 class="section-title">Business Hours</h4>
+        <h4 class="section-title" i18n="@@footer.business_hours">{{ translate('footer.business_hours') }}</h4>
         <div class="business-info">
           <div class="hours-item">
-            <span class="day">Monday - Friday</span>
-            <span class="time">9:00 AM - 6:00 PM</span>
+            <span class="day" i18n="@@footer.schedule.monday_friday">{{ translate('footer.schedule.monday_friday') }}</span>
+            <span class="time" i18n="@@footer.schedule.weekday_hours">{{ translate('footer.schedule.weekday_hours') }}</span>
           </div>
           <div class="hours-item">
-            <span class="day">Saturday</span>
-            <span class="time">10:00 AM - 4:00 PM</span>
+            <span class="day" i18n="@@footer.schedule.saturday">{{ translate('footer.schedule.saturday') }}</span>
+            <span class="time" i18n="@@footer.schedule.saturday_hours">{{ translate('footer.schedule.saturday_hours') }}</span>
           </div>
           <div class="hours-item">
-            <span class="day">Sunday</span>
-            <span class="time">Closed</span>
+            <span class="day" i18n="@@footer.schedule.sunday">{{ translate('footer.schedule.sunday') }}</span>
+            <span class="time" i18n="@@footer.schedule.closed">{{ translate('footer.schedule.closed') }}</span>
           </div>
         </div>
 
         <!-- Call to Action -->
         <div class="footer-cta">
-          <a href="#contact" (click)="scrollToSection('#contact'); $event.preventDefault()" class="cta-button">
-            Start Your Project
+          <a href="#contact" (click)="scrollToSection('#contact'); $event.preventDefault()" class="cta-button" i18n="@@footer.start_project">
+            {{ translate('footer.start_project') }}
           </a>
         </div>
       </div>
@@ -98,12 +98,12 @@
     <div class="footer-bottom">
       <div class="footer-bottom-content">
         <div class="copyright">
-          <p>&copy; {{ currentYear }} Euler Studio. All rights reserved.</p>
+          <p>&copy; {{ currentYear }} Euler Studio. <span i18n="@@footer.copyright">{{ translate('footer.copyright') }}</span></p>
         </div>
 
         <div class="legal-links">
-          <a href="/privacy" class="legal-link">Privacy Policy</a>
-          <a href="/terms" class="legal-link">Terms of Service</a>
+          <a href="/privacy" class="legal-link" i18n="@@footer.legal.privacy">{{ translate('footer.legal.privacy') }}</a>
+          <a href="/terms" class="legal-link" i18n="@@footer.legal.terms">{{ translate('footer.legal.terms') }}</a>
         </div>
 
         <!-- Back to Top -->
