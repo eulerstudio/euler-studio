@@ -131,9 +131,10 @@
 
 .project-screenshot {
   width: 100%;
+  height: auto;
   object-position: top;
   transition: transform 0.3s ease;
-  aspect-ratio: 16/9;
+  object-fit: cover;
 
   &:hover {
     transform: scale(1.05);

@@ -68,12 +68,12 @@ export class I18nService {
         }
       },
       portfolio: {
-        title: 'Latest Projects',
+        title: 'Our Projects',
         subtitle: 'Showcasing our commitment to excellence through innovative digital solutions that drive real business results.',
         cta_title: 'Ready to Start Your Project?',
         cta_description: "Let's discuss how we can bring your vision to life with our expertise and creativity.",
         cta_button: 'Get In Touch',
-        live_demo: 'Live Demo',
+        live_demo: 'Visit Site',
         featured: 'Featured',
         empty_title: 'No Projects Found',
         empty_description: 'No projects match the selected category. Try selecting a different filter.'
@@ -130,11 +130,11 @@ export class I18nService {
         send_message: 'Send Message',
         sending: 'Sending...',
         schedule: {
-          monday_friday: 'Monday - Friday',
-          saturday: 'Saturday',
-          sunday: 'Sunday',
-          weekday_hours: '9:00 AM - 6:00 PM',
-          saturday_hours: '10:00 AM - 4:00 PM',
+          monday_friday: 'Mon-Fri',
+          saturday: 'Sat',
+          sunday: 'Sun',
+          weekday_hours: '9 AM - 6 PM',
+          saturday_hours: '10 AM - 4 PM',
           closed: 'Closed'
         },
         info_cards: {
@@ -154,6 +154,7 @@ export class I18nService {
       },
       footer: {
         brand_tagline: 'Transforming ideas into digital excellence through innovation, creativity, and technical expertise.',
+        location: 'Jakarta, Indonesia',
         quick_links: 'Quick Links',
         services: 'Services',
         business_hours: 'Business Hours',
@@ -172,11 +173,11 @@ export class I18nService {
           ecommerce: 'E-commerce Solutions'
         },
         schedule: {
-          monday_friday: 'Monday - Friday',
-          saturday: 'Saturday',
-          sunday: 'Sunday',
-          weekday_hours: '9:00 AM - 6:00 PM',
-          saturday_hours: '10:00 AM - 4:00 PM',
+          monday_friday: 'Mon-Fri',
+          saturday: 'Sat',
+          sunday: 'Sun',
+          weekday_hours: '9 AM - 6 PM',
+          saturday_hours: '10 AM - 4 PM',
           closed: 'Closed'
         }
       }
@@ -231,12 +232,12 @@ export class I18nService {
         }
       },
       portfolio: {
-        title: 'Proyek Terbaru',
+        title: 'Proyek Kami',
         subtitle: 'Menampilkan komitmen kami terhadap keunggulan melalui solusi digital inovatif yang menghasilkan hasil bisnis nyata.',
         cta_title: 'Siap Memulai Proyek Anda?',
         cta_description: 'Mari diskusikan bagaimana kami dapat mewujudkan visi Anda dengan keahlian dan kreativitas kami.',
         cta_button: 'Hubungi Kami',
-        live_demo: 'Demo Langsung',
+        live_demo: 'Kunjungi Halaman',
         featured: 'Unggulan',
         empty_title: 'Tidak Ada Proyek Ditemukan',
         empty_description: 'Tidak ada proyek yang cocok dengan kategori yang dipilih. Coba pilih filter yang berbeda.'
@@ -293,11 +294,11 @@ export class I18nService {
         send_message: 'Kirim Pesan',
         sending: 'Mengirim...',
         schedule: {
-          monday_friday: 'Senin - Jumat',
-          saturday: 'Sabtu',
-          sunday: 'Minggu',
-          weekday_hours: '09:00 - 18:00',
-          saturday_hours: '10:00 - 16:00',
+          monday_friday: 'Sen-Jum',
+          saturday: 'Sab',
+          sunday: 'Min',
+          weekday_hours: '09 - 18',
+          saturday_hours: '10 - 16',
           closed: 'Tutup'
         },
         info_cards: {
@@ -317,6 +318,7 @@ export class I18nService {
       },
       footer: {
         brand_tagline: 'Mengubah ide menjadi keunggulan digital melalui inovasi, kreativitas, dan keahlian teknis.',
+        location: 'Jakarta, Indonesia',
         quick_links: 'Tautan Cepat',
         services: 'Layanan',
         business_hours: 'Jam Operasional',
@@ -335,11 +337,11 @@ export class I18nService {
           ecommerce: 'Solusi E-commerce'
         },
         schedule: {
-          monday_friday: 'Senin - Jumat',
-          saturday: 'Sabtu',
-          sunday: 'Minggu',
-          weekday_hours: '09:00 - 18:00',
-          saturday_hours: '10:00 - 16:00',
+          monday_friday: 'Sen-Jum',
+          saturday: 'Sab',
+          sunday: 'Min',
+          weekday_hours: '09 - 18',
+          saturday_hours: '10 - 16',
           closed: 'Tutup'
         }
       }
@@ -394,12 +396,12 @@ export class I18nService {
         }
       },
       portfolio: {
-        title: '最新项目',
+        title: '我们的项目',
         subtitle: '通过驱动实际业务成果的创新数字解决方案，彰显我们对卓越品质的执着追求。',
         cta_title: '准备开始您的项目？',
         cta_description: '让我们讨论如何用我们的专业知识和创意将您的愿景变为现实。',
         cta_button: '联系我们',
-        live_demo: '现场演示',
+        live_demo: '访问网站',
         featured: '特色项目',
         empty_title: '未找到项目',
         empty_description: '没有项目匹配所选类别。请尝试选择不同的筛选器。'
@@ -456,11 +458,11 @@ export class I18nService {
         send_message: '发送消息',
         sending: '发送中...',
         schedule: {
-          monday_friday: '周一 - 周五',
+          monday_friday: '周一-周五',
           saturday: '周六',
           sunday: '周日',
-          weekday_hours: '上午9:00 - 下午6:00',
-          saturday_hours: '上午10:00 - 下午4:00',
+          weekday_hours: '上午9点 - 下午6点',
+          saturday_hours: '上午10点 - 下午4点',
           closed: '休息'
         },
         info_cards: {
@@ -480,6 +482,7 @@ export class I18nService {
       },
       footer: {
         brand_tagline: '通过创新、创意和技术专长将想法转化为数字卓越。',
+        location: '雅加达, 印度尼西亚',
         quick_links: '快速链接',
         services: '服务',
         business_hours: '营业时间',
@@ -498,11 +501,11 @@ export class I18nService {
           ecommerce: '电子商务解决方案'
         },
         schedule: {
-          monday_friday: '周一 - 周五',
+          monday_friday: '周一-周五',
           saturday: '周六',
           sunday: '周日',
-          weekday_hours: '上午9:00 - 下午6:00',
-          saturday_hours: '上午10:00 - 下午4:00',
+          weekday_hours: '上午9点 - 下午6点',
+          saturday_hours: '上午10点 - 下午4点',
           closed: '休息'
         }
       }

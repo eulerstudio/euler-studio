@@ -48,9 +48,11 @@
               <div class="overlay-content">
                 <h4 class="overlay-title">{{ project.name }}</h4>
                 <p class="overlay-category">{{ project.category }}</p>
-                <div class="overlay-actions">
-                  <button class="action-btn primary" (click)="viewProject(project)" i18n="@@portfolio.live_demo">{{ translate('portfolio.live_demo') }}</button>
-                </div>
+                @if (project.url) {
+                  <div class="overlay-actions">
+                    <button class="action-btn primary" (click)="viewProject(project)" i18n="@@portfolio.live_demo">{{ translate('portfolio.live_demo') }}</button>
+                  </div>
+                }
               </div>
             </div>
           </div>

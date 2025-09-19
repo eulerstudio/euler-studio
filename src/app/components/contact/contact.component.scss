@@ -94,8 +94,9 @@
   }
 
   .contact-icon {
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 45px;
     height: 45px;
     background-color: var(--primary-black);
@@ -104,6 +105,8 @@
 
     mat-icon {
       font-size: 1.25rem;
+      width: 1.25rem;
+      height: 1.25rem;
     }
   }
 
@@ -483,6 +486,8 @@
 
       mat-icon {
         font-size: 1.1rem;
+        width: 1.1rem;
+        height: 1.1rem;
       }
     }
 
