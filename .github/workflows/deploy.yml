@@ -41,14 +41,17 @@ jobs:
           sudo chown -R $USER:$USER /var/www/euler.id
           sudo chmod -R 755 /var/www/euler.id
 
-    - name: Sync build files to server (rsync)
+    - name: Clean and prepare staging directory
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.SERVER_HOST }}
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
-          # Create temporary staging directory
+          # Remove any existing staging directory to prevent accumulation
+          rm -rf ~/staging/euler-studio
+
+          # Create fresh staging directory
           mkdir -p ~/staging/euler-studio
 
     - name: Copy files to staging

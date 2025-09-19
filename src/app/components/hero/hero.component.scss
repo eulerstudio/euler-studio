@@ -325,7 +325,6 @@
     // For very short mobile viewports
     @media (max-height: 700px) {
       align-items: flex-start;
-      padding-top: max(6rem, env(safe-area-inset-top) + 4rem);
       min-height: auto;
     }
   }
