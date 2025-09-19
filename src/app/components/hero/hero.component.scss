@@ -255,6 +255,15 @@
   .visual-grid {
     max-width: 300px;
   }
+
+  .hero-subtitle {
+    max-width: 100%;
+  }
+
+
+  .hero-actions {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 768px) {

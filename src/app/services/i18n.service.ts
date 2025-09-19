@@ -371,7 +371,7 @@ export class I18nService {
         services: {
           web_development: {
             title: '网站开发',
-            description: '使用现代技术和最佳实践  构建和定制 网站和应用程序。'
+            description: '使用现代技术和最佳实践 构建和定制 网站以及应用程序。'
           },
           digital_strategy: {
             title: '数字策略',
