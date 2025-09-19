@@ -371,7 +371,7 @@ export class I18nService {
         services: {
           web_development: {
             title: '网站开发',
-            description: '使用现代技术和最佳实践构建的定制网站和Web应用程序。'
+            description: '使用现代技术和最佳实践  构建和定制 网站和应用程序。'
           },
           digital_strategy: {
             title: '数字策略',
@@ -379,11 +379,11 @@ export class I18nService {
           },
           ui_ux_design: {
             title: 'UI/UX设计',
-            description: '以用户为中心的设计解决方案，创造引人入胜且直观的体验。'
+            description: '提供以用户为中心的解决方案。'
           },
           technical_consulting: {
             title: '技术咨询',
-            description: '在技术选择、架构和实施策略方面的专家指导。'
+            description: '提供 技术选择、架构和实施策略方面的专家指导。'
           }
         },
         stats: {
@@ -395,7 +395,7 @@ export class I18nService {
       },
       portfolio: {
         title: '最新项目',
-        subtitle: '通过创新的数字解决方案展示我们对卓越的承诺，实现真正的业务成果。',
+        subtitle: '通过驱动实际业务成果的创新数字解决方案，彰显我们对卓越品质的执着追求。',
         cta_title: '准备开始您的项目？',
         cta_description: '让我们讨论如何用我们的专业知识和创意将您的愿景变为现实。',
         cta_button: '联系我们',
@@ -406,7 +406,7 @@ export class I18nService {
       },
       contact: {
         title: '联系我们',
-        subtitle: '准备将您的想法变为现实？让我们讨论您的项目，探索我们如何帮助您成功。',
+        subtitle: '准备好将您的想法变为现实了吗？让我们一同探讨您的项目，探寻助力您成功的方法。',
         info_title: '联系信息',
         form_title: '发送消息',
         success_title: '消息发送成功！',
